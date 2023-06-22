@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="../public/styles/styles.css">
+</head>
+<body>
+  <div class="px-3 py-2 border-bottom nav-container">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+            <img src="https://res.cloudinary.com/de64fcmei/image/upload/v1686755125/i87wr9yifocd1vdawlst.png" alt="brand logo image" width="50" role="img" class="bi me-2" aria-label="BrandLogo">
+          </a>
+  
+          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+            <li>
+              <a href="/" class="nav-link text-secondary">
+                <img src="https://res.cloudinary.com/de64fcmei/image/upload/v1686755739/eqj7x7arkqmctblwe1bv.png" alt="Home icon" width="24" height="24" class="bi d-block mx-auto mb-1">
+                <p class="navbar-text">Home</p>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white">
+                <img src="https://res.cloudinary.com/de64fcmei/image/upload/v1686755833/ypx0ffmhhkm8141utdkh.png" alt="Home icon" width="24" height="24" class="bi d-block mx-auto mb-1">
+                <p style="color: #424874; font-weight:bolder" class="navbar-text">Create</p>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white">
+                <img src="https://res.cloudinary.com/de64fcmei/image/upload/v1686797270/ob36wu3zamlruxa5qk0r.png" alt="Home icon" width="24" height="24" class="bi d-block mx-auto mb-1">
+                <p class="navbar-text">User</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+
+  <div class="body-templatecreate">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Header logo
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="mb-3">
+              <form action="/headerLogoUpload" method="post" enctype="multipart/form-data">
+                <label for="headerLogo" class="form-label">Upload header logo image</label>
+                <input class="form-control form-control-sm" type="file" id="headerLogo" name="headerLogo" accept="image/*" required>
+                <label class="form-label mt-2" for="headerLogoHeight">Enter height of header logo (in px): </label>
+                <input class="form-control form-control-sm" type="number" id="headerLogoHeight" name="headerLogoHeight" min="1" max="500">
+                <center><button class="btn mt-2 upload" type="submit">Add header</button></center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Main content
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div id="editor" style="max-width: 100%;"></div>
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-around">
+              <button class="btn mt-2 upload" onclick="addContent()">Add content</button>
+              <button class="btn mt-2 upload" onclick="resetContent()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Call to action
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div id="buttoneditor"></div>
+            <!-- <form action="/CTAButton" method="post"> -->
+              <input type="text" class="form-control form-control-sm mt-2" id="CTAButtonLink" placeholder="Redirect link" name="CTAButtonLink" required>
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <input class="form-control form-control-sm mt-2" list="buttonShapeOptions" id="CTAButtonShape" placeholder="Button shape" name="CTAButtonShape" required>
+                <datalist id="buttonShapeOptions">
+                  <option value="Rectangular">
+                  <option value="Pill">
+                  <option value="Ghost Pill">
+                </datalist>
+                <input type="color" class="form-control form-control-color form-control-sm mt-2" id="CTAButtonColor" value="#563d7c" name="CTAButtonColor" style="margin-left: 0.8rem;">
+              </div>
+
+              <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-evenly;">
+                <button class="btn mt-2 upload" onclick="addButton()">Add CTA</button>
+                <!-- <button class="btn mt-2 upload" type="submit" onclick="addButton()">Add CTA</button> -->
+                <button class="btn mt-2 upload" onclick="resetButton()">Reset</button>
+              </div>
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Footer address
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div id="footereditor"></div>
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-around">
+              <button class="btn mt-2 upload" onclick="addFooter()">Add footer</button>
+              <button class="btn mt-2 upload" onclick="resetFooter()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            Theme
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-evenly;">
+              <input type="color" class="form-control form-control-color form-control-sm mt-2" id="backgroundColor" value="#f5f5dc" name="backgroundColor">
+              <input type="color" class="form-control form-control-color form-control-sm mt-2" id="bodyColor" value="#bdb76b" name="bodyColor">
+            </div>
+            <center><button class="btn mt-2 upload" onclick="changeTheme()">Apply theme</button></center>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="templateBody" style="display: flex; flex-direction: column; width: 100%; align-items: center; gap: 1rem; background-color: red;">
+      <% if (headerLogoUrl != "") { %>
+        <img src="<%= headerLogoUrl %>" alt="Header logo" style="margin-top: 2rem;" width="60%">
+      <% } %>
+       <img src="" alt="Header logo" style="margin-top: 2rem;" width="60%"> -->
+      <!--<div class="contentBody" style="width: 80%; background-color: blue;">
+        <div id="mainContent"></div>
+        <button id="CTAButton" style="display: none;"></button>
+      </div>
+      <div id="footerContent"></div>
+    </div> -->
+
+    <div class="div1" style="display: flex; flex-direction: column; width: 100%; align-items: center; background-color: #f5f5dc;">
+      <div class="div2" style="display: flex; flex-direction: column; align-items: center; width: 60%; margin-top: 2rem; margin-bottom: 1rem;">
+        <% if (headerLogoUrl != "") { %>
+          <img src="<%= headerLogoUrl %>" alt="Header logo" height="<%= headerLogoHeight %>">
+        <% } %>
+      </div>
+      <div class="div3" style="display: flex; flex-direction: column; align-items: center; width: 80%; border-radius: 10px; background-color: #bdb76b;">
+        <div class="div4" style="display: flex; flex-direction: column; align-items: center; width: 87.5%; margin-top: 1rem; margin-bottom: 1rem;">
+          <div id="mainContent"></div>
+        </div>
+        <div class="div5" style="max-width: 60%; margin-top: 0.5rem; margin-bottom: 1rem;">
+          <button id="CTAButton" style="display: none;"></button>
+        </div>
+      </div>
+      <div class="div6" style="max-width: 70%; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+        <div id="footerContent"></div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+    <form action="/sendTestMail" method="post">
+      <button class="btn btn-bd-primary py-2" type="submit">
+        <img src="https://res.cloudinary.com/de64fcmei/image/upload/v1686835074/send_u0vxug.png" alt="send test mail" height="20px">
+      </button>
+    </form>
+  </div>
+
+  <div class="position-fixed bottom-0 start-0 mb-3 ms-3 bd-mode-toggle">
+    <% if (previewURL != "") { %>
+      <p style="font-size: smaller; background-color: #89ed87; padding: 0.4em; border-radius: 10px;">✅ Mail sent successfully. Preview it <a href="<%= previewURL %>" style="font-weight:bold">here</a></p>
+    <% } %>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script src="./app.js"></script>
+  <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+  <script>
+    var toolbarOptions_main = [
+      [{ 'font': [] }, { 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }], 
+      [{ 'indent': '-1'}, { 'indent': '+1' }], 
+      [{ 'align': [] }, { 'link': 'link' }], 
+    ];
+
+    var quillMain = new Quill('#editor', {
+      modules: {
+        toolbar: toolbarOptions_main
+      },
+      theme: 'snow'
+    });
+
+    var toolbarOptions_button = [
+      ['bold', 'italic', 'strike', { 'color': [] }],
+    ];
+
+    var quillButton = new Quill('#buttoneditor', {
+      modules: {
+        toolbar: toolbarOptions_button
+      },
+      theme: 'snow'
+    });
+
+    var toolbarOptions_footer = [
+      [{ 'font': [] }, { 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike', { 'color': [] }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }], 
+      [{ 'align': [] }, { 'link': 'link' }], 
+    ];
+
+    var quillFooter = new Quill('#footereditor', {
+      modules: {
+        toolbar: toolbarOptions_footer
+      },
+      theme: 'snow'
+    });
+
+    async function addContent() {
+      var content = quillMain.root.innerHTML;
+      document.querySelector("#mainContent").innerHTML = content;
+      await fetch('/mainContentLoad', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({content: content})
+      })
+      .then(response => {
+        if (response.ok) { console.log('Main content request sent to server.');}
+        else { console.log('Error sending main content server request: ', response.statusText);}
+      });
+    }
+
+    async function resetContent() {
+      document.querySelector("#mainContent").innerHTML = "";
+      await fetch('/mainContentReset', {
+        method: 'POST'
+      })
+      .then(response => {
+        if (response.ok) { console.log('Main content reset request sent to server.'); }
+        else { console.log("Error sending request to reset main content: ", response.statusText); }
+      });
+    }
+
+    async function addButton() {
+      let buttonContent = quillButton.root.innerHTML;
+      let buttonLink = document.querySelector("#CTAButtonLink").value;
+      let buttonColor = document.querySelector("#CTAButtonColor").value;
+      let buttonShape = document.querySelector("#CTAButtonShape").value;
+      var button = document.querySelector("#CTAButton");
+      let n = buttonContent.length;
+      button.innerHTML = "<h2 style='margin: 0; padding: 0;'>" + buttonContent.slice(3, n-4) + "</h2>";
+      let color = "background-color: " + buttonColor + ";";
+      let padding = "padding: 0.6rem;";
+      let shape;
+      if (buttonShape === 'Rectangular') { shape = "border-radius: 5%/10%; border: none;";}
+      else if (buttonShape === 'Pill') { shape = "border-radius: 15%/40%; border: none;"; }
+      else if (buttonShape === 'Ghost Pill') { color = "background-color: transparent;"; shape = "border-radius: 15%/40%; border: 0.1rem; border-color: black;"}
+      let style = color + padding + shape + "text-align: center;" + "margin: 0;";
+      button.setAttribute('style', style);
+      // button.setAttribute('formaction', buttonLink);
+      // console.log(button.innerHTML, buttonLink, buttonColor, buttonShape);
+      await fetch('/CTALoad', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({buttonContent: button.innerHTML, buttonStyle: style, buttonLink: buttonLink})
+      })
+      .then(response => {
+        if (response.ok) {console.log('CTA content request sent to server.');}
+        else {console.log('Error sending CTA content request to server: ', response.statusText);}
+      });
+    }
+
+    async function resetButton() {
+      var button = document.querySelector("#CTAButton");
+      button.setAttribute("style", "display: none;");
+      await fetch('/CTAReset', {
+        method: 'POST'
+      })
+      .then(response => {
+        if (response.ok) {console.log('CTA content reset request sent to server.');}
+        else {console.log("Error sending CTA content reset request to server: ", response.statusText);}
+      });
+    }
+
+    async function addFooter() {
+      var footerContent = quillFooter.root.innerHTML;
+      document.querySelector("#footerContent").innerHTML = footerContent;
+      document.querySelector("#footerContent").setAttribute('style', "font-size: smaller;")
+      await fetch('/footerContentLoad', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({footerContent: footerContent})
+      })
+      .then(response => {
+        if (response.ok) { console.log('Footer content request sent to server');}
+        else { console.log('Error sending footer content request to server: ', response.statusText);}
+      });
+    }
+
+    async function resetFooter() {
+      document.querySelector("#footerContent").innerHTML = "";
+      await fetch('/footerContentReset', {
+        method: 'POST'
+      })
+      .then(response => {
+        if (response.ok) { console.log('Footer content reset request sent to server.'); }
+        else { console.log("Error sending footer content reset request to server: ", response.statusText); }
+      });
+    }
+
+    async function changeTheme() {
+      let backgroundColor = document.querySelector("#backgroundColor").value;
+      let bodyColor = document.querySelector("#bodyColor").value;
+      let currBackground = document.querySelector(".div1").getAttribute('style');
+      let currBody = document.querySelector('.div3').getAttribute('style');
+      let newBackground = currBackground.slice(0, currBackground.length-8) + backgroundColor + ';';
+      let newBody = currBody.slice(0, currBody.length-8) + bodyColor + ';';
+      document.querySelector('.div1').setAttribute('style', newBackground);
+      document.querySelector('.div3').setAttribute('style', newBody);
+      await fetch('/changeTheme', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({backgroundColor: backgroundColor, bodyColor: bodyColor})
+      })
+      .then(response => {
+        if (response.ok) {console.log('Theme change request sent to server.');}
+        else {console.log('Error sending theme change request to server: ', response.statusText);}
+      });
+    }
+
+    
+  </script>
+</body>
+</html>

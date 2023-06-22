@@ -1,0 +1,23 @@
+.nav-container { background-color: #F4EEFF; }
+
+.navbar-text {font-weight: bolder; color: #A6B1E1; padding: 0px;}
+
+.jumbotron {background-color: #F4EEFF;}
+
+.body-templatecreate {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem;
+}
+
+.accordion-button[aria-expanded='true'] {background-color: #F4EEFF; border:0px}
+.accordion-button:focus {border: 0px; box-shadow: none;}
+
+.btn {background-color: #F4EEFF;}
+.btn:hover {background-color: #A6B1E1; color: black;}
+.upload {font-size: smaller;}
+
+input::file-selector-button {font-size: smaller; border: none; border-radius: 5px; background-color: #F4EEFF;}
+input::file-selector-button:hover {background-color: #A6B1E1;}
+
