@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./public/styles/styles.css">
 </head>
 <body>
+    <!-- Navbar -->
     <div class="px-3 py-2 border-bottom nav-container">
         <div class="container">
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -38,11 +39,12 @@
           </div>
         </div>
     </div>
+    <!-- Jumbotron -->
     <div class="container my-5">
         <div class="p-5 text-center rounded-3 jumbotron">
-          <h1 class="text-body-emphasis">Welcome to MAIL</h1>
+          <h1 class="text-body-emphasis">Welcome to BUILDER.mail</h1>
           <p class="col-lg-8 mx-auto fs-6 text-muted">
-            Choose from the available templates and customize the template to send out beautifully crafted html mails. Get started with our standard template below.
+            Build on from our fully customizable mail template to send out beautifully crafted HTML mails all the time. Get started with our standard template below. 
           </p>
           <div class="d-inline-flex gap-2">
             <form action="/template" method="get">
@@ -50,10 +52,9 @@
             </form>
           </div>
         </div>
-      </div>
-
-      <!-- Template album starts here-->
-      <div class="album py-5">
+    </div>
+    <!-- Template album -->
+    <!-- <div class="album py-5">
         <div class="container">
     
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -99,6 +100,80 @@
 
           </div>
         </div>
+    </div> -->
+    <!-- Key features grid -->
+    <div class="container px-4 py-5" id="icon-grid">
+      <h2 class="pb-2 border-bottom">Key featues</h2>
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769191/megaphone_jzdesb.png" alt="megaphone representing header" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">the bold HEADER</h3>
+            <p>Upload a header logo that calls out to your audience with a convenient image upload and image resize UI.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769191/content_vf1yoj.png" alt="page with pen representing content" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">deliver your CONTENT</h3>
+            <p>With the help of our rich text editor, you can customize your main content to your heart's content :)</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769192/social-media_xf4vyk.png" alt="social media handles for footer" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">the FOOTER returns</h3>
+            <p>Nothing beats a clear footer with all your media handles so the users can follow you (or fact-check you). NPI</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769192/button_qpikuf.png" alt="clicking a button for CTA" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">the hero - CTA</h3>
+            <p>Customize your CTA to land your users where you need them to be. Add style, link, text - we got you covered!</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769192/paint_zf4dko.png" alt="color palette for themes" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">choose your THEME</h3>
+            <p>It really helps to have your campaign bear the colors of your company. Customization at your disposal, every time!</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769191/preview_guwwao.png" alt="preview icon" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">that PREVIEW helps</h3>
+            <p>Watch all your changes happen real-time, so you would never compromise with your campaign.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769191/downloads_tujaam.png" alt="download icon" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">download your HTML</h3>
+            <p>Oh yes. This HTML is yours, no charges. Feel free to go ahead and download the HTML code and get going.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <img class="flex-shrink-0 me-3" src="https://res.cloudinary.com/de64fcmei/image/upload/v1687769191/finish-line_wusrmh.png" alt="finish the race with the final preview" width="40" height="40">
+          <div>
+            <h3 class="fw-bold mb-0 fs-5 text-body-emphasis">go VIEW that mail</h3>
+            <p>Terror before finalizing? A preview option of the final campaign, just for You. Powered by ▪️Nodemailer▪️</p>
+          </div>
+        </div>
       </div>
+    </div>
+    <!-- Footer -->
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">Made with 💜 and Node.js</p>
+    
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+          <li class="nav-item"><a href="https://github.com/GayathriShreeya/CustomHTMLEmailBuilder" class="nav-link px-2 text-body-secondary" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+      </footer>
+    </div>
 </body>
 </html>

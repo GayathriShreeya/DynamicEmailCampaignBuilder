@@ -18,6 +18,10 @@
 .btn:hover {background-color: #A6B1E1; color: black;}
 .upload {font-size: smaller;}
 
+.specialbtn{background-color: white; border-color: black;}
+.specialbtn:hover {background-color: #A6B1E1;}
+
 input::file-selector-button {font-size: smaller; border: none; border-radius: 5px; background-color: #F4EEFF;}
 input::file-selector-button:hover {background-color: #A6B1E1;}
+
 

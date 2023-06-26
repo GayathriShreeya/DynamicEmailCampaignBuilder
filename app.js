@@ -1,6 +1,7 @@
 const express = require("express");
 const fileupload = require("express-fileupload");
 const nodemailer = require('nodemailer');
+const fs = require('fs');
 
 const app = express();
 app.use(express.static('public'));
@@ -16,12 +17,38 @@ var storeCTAButton = '';
 var storeFooterContent = '';
 var storeBackgroundColor = '#f5f5dc';
 var storeBodyColor = '#bdb76b';
-var previewURL = "";
+var previewURL = '';
 
-app.get("/", function(req, res) {res.sendFile(__dirname + "/welcome.html");});
-app.get("/template", async function(req, res) { res.render('template', {headerLogoUrl: headerLogoUrl, headerLogoHeight: headerLogoHeight, previewURL: previewURL}); });
+app.get("/", function(req, res) {
+    res.sendFile(__dirname + "/welcome.html");
+    let filePath = 'temp_user_data/headerLogo.png';
+    fs.access(filePath, error => {
+        if (!error) {
+          fs.unlink(filePath,function(error){
+           if(error) console.error('Error Occured:', error);
+            console.log('File deleted!');
+           });
+          } else {
+            console.error('Error Occured:', error);
+          }
+    });
+    
+    filePath = 'temp_user_data/testmail.html';
+    fs.access(filePath, error => {
+        if (!error) {
+          fs.unlink(filePath,function(error){
+           if(error) console.error('Error Occured:', error);
+            console.log('File deleted!');
+           });
+          } else {
+            console.error('Error Occured:', error);
+          }
+    });
+});
+app.get("/template", async function(req, res) { res.render('template', {headerLogoUrl: headerLogoUrl, headerLogoHeight: headerLogoHeight}); });
 app.get('/public/assets/strong.png', function(req, res) {res.sendFile(__dirname + "/public/assets/strong.png");});
 app.get('/public/styles/styles.css', function(req, res) {res.sendFile(__dirname + "/public/styles/styles.css");});
+app.get('/temp_user_data/testmail.html', function(req, res) {res.sendFile(__dirname + "/temp_user_data/testmail.html");});
 
 require("dotenv").config();
 const cloudinary = require("cloudinary").v2;
@@ -45,7 +72,7 @@ app.post('/headerLogoUpload', async function (req, res) {
     await uploadImage(targetPath);
     console.log(req.files.headerLogo);
     headerLogoHeight = req.body.headerLogoHeight;
-    res.render('template', {headerLogoUrl: headerLogoUrl, headerLogoHeight: headerLogoHeight, previewURL: previewURL})
+    res.render('template', {headerLogoUrl: headerLogoUrl, headerLogoHeight: headerLogoHeight})
 });
 
 app.post('/mainContentLoad', async function(req, res) {
@@ -101,7 +128,18 @@ app.post('/sendTestMail', async function(req, res) {
     var footerElement = '<div style="max-width: 40%; display: flex; flex-direction: column; align-items: center; margin-top: 1.5rem; margin-bottom: 1.5rem; font-size: smaller; ">' + storeFooterContent + '</div>';
     var mainElement = '<div style="width: 50%; display: flex; flex-direction: column; align-items: center; border-radius: 10px; background-color: ' + storeBodyColor + '">' + mainContentElement + CTAElement + '</div>';
     var fullMailElement = '<div style="width: 100%; display: flex; flex-direction: column; align-items: center; background-color: ' + storeBackgroundColor + '">' + headerLogoElement + mainElement + footerElement + '</div>';
+
+    const targetPath = 'temp_user_data/testmail.html';
+    fs.writeFile(targetPath, fullMailElement, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log('mail content saved successfully');
+    });
+
     console.log('>> Send Test Mail request recieved');
+    let senderaddress = req.body.sender;
+    let recieveraddress = req.body.reciever;
     
     try {
         const testAccount = await nodemailer.createTestAccount();
@@ -113,8 +151,8 @@ app.post('/sendTestMail', async function(req, res) {
         });
 
         const info = await transporter.sendMail({
-            from: 'gayathrishreeyapatnala@gmail.com',
-            to: 'shreeyapgs@gmail.com',
+            from: senderaddress,
+            to: recieveraddress,
             subject: 'Hello from my project MAIL',
             text: 'This is a test mail.',
             html: fullMailElement
@@ -125,10 +163,16 @@ app.post('/sendTestMail', async function(req, res) {
         previewURL = nodemailer.getTestMessageUrl(info);
         headerLogoUrl = "";
         headerLogoHeight = 50;
-        res.render('template', {previewURL: previewURL, headerLogoHeight: headerLogoHeight, headerLogoUrl: headerLogoUrl});
-        res.sendStatus(200);
     } catch (error) { console.log("Error: ", error);}
 });
+
+app.get('/downloadHTML', function (req, res) {
+    res.download('temp_user_data/testmail.html');
+})
+
+app.post('/viewPreview', async function(req, res) {
+    res.json({ previewURL });
+})
 
 
 
