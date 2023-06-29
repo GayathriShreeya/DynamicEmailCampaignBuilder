@@ -1,6 +1,6 @@
 # DynamicEmailCampaignBuilder
 
-Custom HTML Email Builder is a web application that you can use to easily create and customize HTML email templates. Users can add Header logos, main content, call to action and footer content which can be fully customized using a rich text editor, and options to add images and manage themes. 
+Dynamic Email Campaign Builder is a web application that you can use to easily create and customize HTML email templates. Users can add Header logos, main content, call to action and footer content which can be fully customized using a rich text editor, and options to add images and manage themes. 
 
 ## Key Features
 * <b>Real-time Preview:</b> The application provides a real-time preview of the email template, so the users can see how their edits affect the final result instantly.
