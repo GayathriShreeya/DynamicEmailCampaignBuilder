@@ -1,4 +1,4 @@
-# CustomHTMLEmailBuilder
+# DynamicEmailCampaignBuilder
 
 Custom HTML Email Builder is a web application that you can use to easily create and customize HTML email templates. Users can add Header logos, main content, call to action and footer content which can be fully customized using a rich text editor, and options to add images and manage themes. 
 
